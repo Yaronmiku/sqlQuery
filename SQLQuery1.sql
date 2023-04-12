@@ -1,49 +1,82 @@
-﻿select 1+1;
-
-create table customer
-(Id int,
-firstname varchar(20),
-city varchar(20))
-
-drop database lesson1;
-
-create database day1;
-go;
 use day1
 
-insert into Customers
-values ('Son','2000-01-01','2000-12-01')
+--one to many for mountains & peaks
 
-insert into Customers (CreatedDate, DoB, FirstName)
-values ('2022-05-24','2002-12-01','Loc')
-
-update Customer2
-set DoB='2003-02-28'
-where Id= 3;
-
-/****** Script for SelectTopNRows command from SSMS  ******/
-SELECT TOP * FROM [day1].[dbo].[Invoice]
-
-Create database Invoice;
-CREATE TABLE Invoice (
-    InvoiceId int primary key identity, 
-	--identity tự động tăng dần
-    CustomerId int,
-    InvoiceDate date,
-	BillingAddress nvarchar(60) not null,
-	BillingCity nvarchar(30),
+CREATE TABLE Mountains(
+  MountainID INT PRIMARY KEY,
+  MountainName VARCHAR(50)
 )
 
-Insert into Invoice values (1, '2022-05-23',N'10 Trần Phú', N'Đà Nẵng')
+CREATE TABLE Peaks(
+  PeakId INT PRIMARY KEY,
+  MountainID INT,
+  CONSTRAINT FK_Peaks_Mountains 
+  FOREIGN KEY (MountainID)   REFERENCES Mountains(MountainID))
 
-Alter table Invoice
-ADD Total float 
+alter table peaks
+add PeakName nvarchar(100)
 
-Alter table Invoice
-Alter column BillingAddress nvarchar(100)
+insert into Mountains
+values (0, 'phansipan')
 
-/****** Script for SelectTopNRows command from SSMS  ******/
-SELECT * FROM [day1].[dbo].[Invoice]
-Alter Table Customers ADD CONSTRAINT uq_NationalId
-Unique (NationalId)
---Unique được NULL, Primary key không được NULL
+INSERT INTO Peaks
+VALUES (0, 0, 'phansipan 0')
+
+
+-- many to many for employees & projects
+
+CREATE TABLE Employees(
+	EmployeeID INT PRIMARY KEY,  EmployeeName VARCHAR(50), Emp_Address nvarchar(50)
+)
+insert Employees
+values (0, 'thao', '1 abc, Hai Chieu district'),
+(1, 'A', 'NY'),
+(2, 'B', 'Oregan')
+
+
+CREATE TABLE Projects(
+	ProjectID INT PRIMARY KEY,  ProjectName VARCHAR(50), Proj_address nvarchar(100)
+)
+
+insert Projects
+values (0, 'Captain America', 'wakanda')
+
+DELETE FROM Projects
+
+CREATE TABLE EmployeesProjects(
+	EID INT,  PID INT,
+  CONSTRAINT PK_EmployeesProjects
+  PRIMARY KEY(EID, PID),
+
+  CONSTRAINT FK_EmployeesProjects_Employees
+  FOREIGN KEY(EID)
+  REFERENCES Employees(EmployeeID),
+
+  CONSTRAINT FK_EmployeesProjects_Projects
+  FOREIGN KEY(PID)
+  REFERENCES Projects(ProjectID)
+)
+
+insert EmployeesProjects
+values (1, 0), (2,0)
+
+delete from EmployeesProjects
+
+truncate table EmployeesProjects
+
+-- one to one relationship Drivers & Cars
+CREATE TABLE Drivers(
+  DriverID INT PRIMARY KEY,
+  DriverName VARCHAR(50),
+  Phonenumber varchar(10)
+)
+
+CREATE TABLE Cars(
+  CarID INT PRIMARY KEY,
+  DriverID INT UNIQUE,
+
+  CONSTRAINT FK_Cars_Drivers 
+  FOREIGN KEY(DriverID) 
+  REFERENCES Drivers(DriverID)
+)
+
