@@ -1,0 +1,296 @@
+1/ in ra danh sách các món ăn chay
+SELECT *
+FROM MonAn
+WHERE Loai='Chay';
+2/ in và sắp xếp các món ăn từ đắt về rẻ
+SELECT *
+FROM MonAn
+ORDER BY Gia DESC;
+3/ đếm số đơn hàng trong tháng 3 năm 2021
+DonHang(NgayLapHD--date YYYY/MM/DD)
+SELECT COUNT(*)
+FROM DonHang
+WHERE month(NgayLapHD) = 3 AND year(NgayLapHD) = 2021;
+4/ in ra các khách hàng có full tên cuối là 'Ha'
+KhachHang(HoTen)
+SELECT *
+FROM KhachHang
+WHERE HoTen LIKE '%Ha';
+5/ người (or những người) già nhất công ty năm nay nhiêu tuổi (năm) ?
+current datetime = GETDATE()
+year min
+KhachHang(NgaySinh -- YYYY/MM/DD)
+SELECT YEAR(GETDATE()) - MIN(YEAR(NgaySinh)) 
+FROM KhachHang;
+
+SELECT *
+FROM KhachHang
+WHERE YEAR(NgaySinh) = (SELECT MIN(YEAR(NgaySinh)) FROM KhachHang);
+6/ đếm số nhân viên theo mỗi vị trí trong cty (position)
+NhanVien(Position)
+SELECT COUNT(*)
+FROM NhanVien
+GROUP BY Position;
+
+7/ cập nhật nhân viên số 1 thành nữ
+NhanVien(GioiTinh)
+UPDATE NhanVien
+SET GioiTinh = 'nữ'
+WHERE id = '1';
+
+1/ Tìm, liệt kê khách hàng họ 'Huynh'
+SELECT *
+FROM KhachHang
+WHERE HoTen LIKE 'Huynh%';
+
+KhachHang(Ho,Ten)
+SELECT *
+FROM KhachHang
+WHERE Ho = 'Huynh';
+
+
+2/ cập nhật khách hàng số 2 thành họ 'Do'
+UPDATE KhachHang
+SET Ho = 'Do'
+WHERE id = 2;
+
+3/ Tìm nhân viên (or những nhân viên) có ngày vào làm sớm nhất cty -- MIN(NgayVaoLam) 
+NhanVien(NgayVaoLam -- date YYYY/MM/DD)
+SELECT *
+FROM NhanVien
+WHERE NgayVaoLam = (SELECT MIN(NgayVaoLam) FROM NhanVien);
+
+4/ đếm số đồ uống (beverages) trong FoodItems
+FoodItems(Type)
+SELECT COUNT(*)
+FROM FoodItems
+WHERE Type = 'beverages';
+
+5/ tính số món đã gọi của mỗi mã đơn hàng
+DonHang(MaDH, MaMon)
+SELECT COUNT(*)
+FROM DonHang
+GROUP BY MaDH;
+
+6/ số đơn hàng trong tháng 1 năm 2022
+DonHang(NgayLap)
+SELECT COUNT(*)
+FROM DonHang
+WHERE YEAR(NgayLap) = 2022 AND MONTH(NgayLap) = 1;
+
+1/ Đếm số bình luận rỗng '' hoặc null
+BinhLuan(NoiDung)
+SELECT COUNT(*)
+FROM BinhLuan
+WHERE NoiDung = '' OR NoiDung = null';
+
+2/ Liệt kê tất cả sản phẩm dòng Galaxy và Iphone
+SELECT *
+FROM Product
+WHERE Type = 'Galaxy' OR Type = 'Iphone';
+WHERE Type IN ('Galaxy', 'Iphone');
+3/ liệt kê và sắp xếp sản phẩm có giá từ 5 triệu theo thứ tự giá thấp đến cao.
+SELECT *
+FROM Product
+WHERE Price >= 5000000
+ORDER BY Price ASC;
+
+4/ đếm số đơn hàng mà mỗi nhân viên môi giới (bán hàng) bán được (kèm tên NV đó)
+DonHang(MaDH, MaNV, TenNV)
+SELECT TenNV, COUNT(*)
+FROM DonHang
+GROUP BY TenNV;
+
+DonHang(MaDH, MaNV)
+NhanVien(MaNV, TenNV)
+SELECT TenNV, COUNT(*)
+FROM DonHang
+JOIN NhanVien
+ON DonHang.MaNV = NhanVien.MaNV
+GROUP BY TenNV;
+
+5/ Liệt kê những đơn hàng (và tên khách mua) mua hàng vào sáng ngày cuối cùng của tháng 2, 2022 -- SELECT DATEADD(d,-1, DATEADD(mm, DATEDIFF(mm, 0 ,'2022/02/01')+1, 0))
+DonHang(NgayLapHD, TimeLapHD)
+SELECT *
+FROM DonHang
+WHERE NgayLapHD = (SELECT DATEADD(d,-1, DATEADD(mm, DATEDIFF(mm, 0 ,'2022/02/01')+1, 0))) AND TimeLapHD >= '00:00:00' AND TimeLapHD <= '12:00:00';
+
+6/ Top 3 Sản phẩm bán chạy nhất & tên của nó.
+SanPham(TenSanPham, SoLuongDaBan)
+SELECT TOP 3 TenSanPham
+FROM SanPham
+ORDER BY SoLuongDaBan DESC;
+
+1/ Đếm số cầu thủ ở mỗi quốc gia
+SELECT QuocGia, COUNT(*)
+FROM CauThu
+GROUP BY QuocGia;
+
+2/ Sân nào (or những sân nào) sức chứa lớn nhất.
+SanBong(SucChua -- int) 
+SELECT *
+FROM SanBong
+WHERE SucChua = (SELECT MAX(SucChua) FROM SanBong);
+
+3/ Đếm Số clb bắt đầu bằng chữ B
+CauLacBo(TenCLB)
+SELECT COUNT(*)
+FROM CauLacBo
+WHERE TenCLB LIKE 'B%';
+
+4/ Hợp đồng dài nhất là bao nhiêu năm ? SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
+CauThu(NgayBD, NgayKT)
+SELECT MAX(DATEDIFF(year, NgayKT, NgayBD))
+FROM CauThu;
+
+5/ Clb Real đã đá bao nhiêu trận ?
+TranDau(DoiNha, DoiKhach)
+SELECT COUNT(*)
+FROM TranDau
+WHERE DoiNha = 'Real' OR DoiKhach = 'Real';
+
+6/ Cập nhật tất cả thủ môn người Anh về họ 'Do'
+CauThu(Ho, Ten, ViTriDa, QuocGia)
+UPDATE CauThu
+SET Ho = 'Do'
+WHERE ViTriDa = 'thủ môn' AND QuocGia = 'Anh';
+
+1/ Liệt kê ra những khách hàng có số điện thoại dài hơn 12 kí tự
+LEN(chuỗi) 
+KhachHang(SDT)
+SELECT *
+FROM KhachHang
+WHERE LEN(SDT) > 12;
+
+2/ Liệt kê ra những salespersons có email là gmail.com
+NhanVien(LoaiNV, Email)
+SELECT *
+FROM NhanVien
+WHERE Email LIKE '%gmail.com' AND LoaiNV = 'salespersons';
+
+3/ liệt kê và sắp xếp sản phẩm bán giá giảm dần
+SELECT *
+FROM Product
+ORDER BY Price DESC;
+
+4/ đếm số đơn hàng mà mỗi nhân viên môi giới (bán hàng) được
+DonHang(MaDH, MaNV)
+SELECT MaNV, COUNT(*)
+FROM DonHang
+GROUP BY MaNV;
+
+5/ Tìm những đơn hàng bán được nhiều hơn 2 loại sản phẩm
+DonHang(MaDH, MaSP)
+SELECT *
+FROM DonHang
+GROUP BY MaDH
+HAVING COUNT(MaSP) > 2;
+
+6/ Cập nhật zipcode của khách hàng có ID > 10 về '' (rỗng)
+KhachHang(ID, ZipCode)
+UPDATE KhachHang
+SET ZipCode = ''
+WHERE ID > 10;
+
+1/ Liệt kê những SV họ Lê là nam giới
+2/ Đếm số sinh viên có email bắt đầu bằng chữ B
+3/ Liệt kê 5 phòng (và thông tin) có giá từ cao xuống thấp.
+4/ sv id số 2 có tên gì và đã thuê những phòng loại gì, giá bao nhiêu ?
+5/ cập nhật staff số 1 gt nam thành gt nữ
+6/ Dịch vụ giặt ủi có bao nhiêu lược thuê ?
+1/ liệt kê nhân viên có quê ở Quảng Bình, làm kế toán
+2/ Liệt kê 2 giờ mà nhân viên HAY đến công ty vào buổi sáng.
+3/ Tính khoảng cách (bằng ngày) giữa ngày sớm nhất và muộn nhất trong bản Work_Schedule
+4/ sắp xếp bảng rate lương theo thứ tự giảm dần
+5/ Lương cao nhất được trả là vào thời gian nào, người nào (những người nào)
+6/ Mở rổng bảng Timekeeping để thấy lun cả tên nhân viên.
+1/ Tìm khách hàng có middle name là 'Thi'
+2/ Liệt kê và sắp xếp dược sĩ Nam, tên tăng dần theo Alphabet.
+3/ Thuốc (hoặc những loại thuốc) đắt tiền nhất có tên là gì ?
+5/ Hiện đơn hàng & tên người mua & tên loại thuốc
+6/ đếm số đơn hàng mà mỗi dược sĩ đã bán được
+4/ Mở rộng đơn hàng với tổng tiền (suy ra từ order detail & medicine)
+1/ Liệt kê những SV họ Le là nam giới
+2/ Đếm số sinh viên có email bắt đầu bằng chữ b
+3/ Liệt kê 5 phòng (và thông tin) có giá từ cao xuống thấp.
+4/ sv id số 2 có tên gì và đã thuê những phòng loại gì, giá bao nhiêu ?
+5/ liệt kê roomservice với khoảng thời gian sử dụng dịch vụ. 
+6/ Hóa đơn cao nhất là nhiêu tiền ?
+1/ Đếm số cầu thủ ở mỗi quốc gia.
+SELECT COUNT(*)
+FROM CauThu
+GROUP BY QuocGia;
+
+2/ sắp xếp liệt kê sân vận động có sức chứa tăng dần.
+SELECT *
+FROM SanVanDong
+ORDER BY SucChua ASC;
+
+3/ Liệt kê clb bắt đầu bằng chữ B
+4/ Hợp đồng dài nhất là bao nhiêu năm ?
+5/ Clb MU có sân bóng chính là tên gì ? độ dài địa chỉ sân này là bao nhiêu ?
+CauLacBo(MaCLB, TenCLB, MaSVD)
+SanVanDong(MaSVD, TenSVD)
+SELECT TenSVD, LEN(TenSVD)
+FROM CauLacBo
+JOIN SanVanDong
+ON CauLacBo.MaSVD = SanVanDong.MaSVD
+WHERE TenCLB = 'MU';
+
+6/ Trận bóng id=15 ai là đội nhà tên gì, sân bóng tên gì ? 
+TranDau(ID, DoiNha, DoiKhach, MaSVD)
+SanVanDong(MaSVD, TenSVD)
+SELECT DoiNha, TenSVD
+FROM TranDau
+JOIN SanVanDong
+ON TranDau.MaSVD = SanVanDong.MaSVD
+WHERE ID = 15;
+
+1/ sắp xếp room type theo thứ tự giảm dần về giá
+2/ đếm số khách hàng ở mỗi địa chỉ
+3/ khách hàng số 3 đã từng làm review mấy lần ?
+4/ liệt kê việc đặt phòng kèm với khoảng thời gian lưu trú này (tính theo ngày)
+5/ tính số review có độ dài comment > 4
+6/ cập nhật room có id = 7 lên tầng 7 
+1/ thêm 1 row vào Salary và liệt kê ra danh sách thứ tự giảm dần về salary
+2/ Tính giờ nhân viên st01 làm vào ngày 1 tháng 2, 2022.
+3/ Liệt kê bảng nhân viên kèm với vị trí (position) của họ trong cty 
+4/ Đếm những nhân viên có tên bắt đầu bằng chữ t,
+5/ Đếm số nhân viên ở mỗi giới (nam/nữ)
+6/ Liệt kê những Time_work vắng mặt vào những ngày thường, và ngày nào họ vắng
+1/ Bao nhiêu loại phòng khác nhau ?
+2/ Liệt kê nhân viên sinh năm từ 1980
+3/ Đếm số khách hàng theo mỗi Họ của họ. 
+4/ Liệt kê booking kèm với tên của người book phòng. (ko cần nhân viên)
+5/ Liệt kê và sắp xếp khách hàng theo độ tuổi giảm dần
+6/ Đổi tên cụ Dumbledore thành Grindelwald trong bảng khách hang
+1/ Đếm sv họ Nguyễn
+2/ Tìm, liệt kê phòng trống, cho nam, sức chứa trên 5 người
+3/ SV số 2 từng order phòng bao nhiêu lần ?
+4/ Tính tổng tiền dịch vụ trên mỗi phòng
+5/ Show Room Order có kèm theo khoảng thời gian thuê (tính bằng ngày)
+6/ Update sv Lê Minh Đức thành 19 tuổi.
+1/ Liệt kê staff có đầu sdt 09
+2/ Sắp xếp staff tăng dần theo thứ tự alphabet, 
+3/ Đếm số khách (guest) từ mỗi quốc gia
+4/ sắp xếp room type giá tăng dần
+5/ Liệt kê ra sự kiện booking có kèm theo tên khách hàng.
+6/ Tìm và liệt kê nhân viên có tên Adam, giới tính Nam.
+1/ Tim NV có tên lót là 'Van'
+2/ Đếm số nhân viên có ngày sinh trước năm 2000
+3/ Sắp xếp món ăn là Mỳ theo thứ tự tăng dần về giá
+4/ Mở rộng bảng Order để xem được khách hàng tên gì mua gì (tên món)
+5/ Tính tổng tiền (doanh thu) cửa hàng/nhà hàng này thu được.
+6/ Bill id 21 gọi thêm một món Mỳ Ramen thì insert ntn ?
+1/ Tìm sv có sdt bắt đầu 03 VÀ là nữ
+2/ Update (những) người dùng yahoo mail thành email mới là '' (rỗng)
+3/ Tìm nhân sự sinh sau năm 1990
+4/ Liệt kê bảng contract kèm theo thời hạn (khoảng tg là bằng ngày) của những hợp đồng này.
+5/ Đếm số lần được phân công quản lý của mỗi staff (ko cần tên)
+6/ Đếm số staff là quản lý (manager)
+1/ Tìm staff thuộc chi nhánh có ID=3,5,7
+2/ hiển thị & sắp xếp staff theo độ tuổi giảm dần
+3/ Tìm những chi nhánh có tên bắt đầu bằng chữ H
+4/ Đếm số thuốc theo từng nhóm loại thuốc
+5/ Tìm những đơn hàng bán trong năm 2019
+6/ Số lượng nhân viên ở chi nhánh đông nhất là bao nhiêu ?
