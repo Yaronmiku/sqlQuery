@@ -1,0 +1,103 @@
+create table Towns (id int identity primary key, Tname varchar(20) not null)
+
+insert into Towns values
+('Nha trang'),
+('Da nang'),
+('')
+
+create trigger tg_NotEmptyTownName ON Towns FOR INSERT, UPDATE
+as 
+	if(exists(select * from inserted WHERE len (Tname)=0))
+	begin
+		raiserror('Town name should not be empty', 16, 1)
+		rollback
+	end
+
+insert into Towns values('')
+update Towns set Tname='Da Nang 2' where id = 2
+
+create trigger tg_NoUpdateSpecialTown ON Towns FOR UPDATE
+as 
+	if(exists(select * from inserted where ID = 1))
+	begin
+		raiserror('Town name should not be empty', 16, 1)
+		rollback
+	end
+drop trigger tg_NoUpdateSpecialTown
+update Towns set Tname= 'new name'
+
+create table Customers
+(UserID int primary key,
+FirstName nvarchar(20),
+DoB date,
+IsFrozen bit default 0,
+Balance int)
+
+create table Withdrawalscreate table Towns (id int identity primary key, Tname varchar(20) not null)
+
+insert into Towns values
+('Nha trang'),
+('Da nang'),
+('')
+
+create trigger tg_NotEmptyTownName ON Towns FOR INSERT, UPDATE
+as 
+	if(exists(select * from inserted WHERE len (Tname)=0))
+	begin
+		raiserror('Town name should not be empty', 16, 1)
+		rollback
+	end
+
+insert into Towns values('')
+update Towns set Tname='Da Nang 2' where id = 2
+
+create trigger tg_NoUpdateSpecialTown ON Towns FOR UPDATE
+as 
+	if(exists(select * from inserted where ID = 1))
+	begin
+		raiserror('Town name should not be empty', 16, 1)
+		rollback
+	end
+drop trigger tg_NoUpdateSpecialTown
+update Towns set Tname= 'new name'
+
+create table Customers
+(UserID int primary key,
+FirstName nvarchar(20),
+DoB date,
+IsFrozen bit default 0,
+Balance int)
+
+create table Withdrawals
+(WID int identity primary key,
+UserID int references Customers(UserID),
+WDate date,
+WAmount int)
+
+insert into Customers values
+(1, 'Thao', '1995-01-01', 0, 1000),
+(2, 'Do', '1996-01-01', 0, 500)
+
+create trigger tag_NoDeletionOnCus ON Customers INSTEAD OF DELETE
+AS
+	update Customers set IsFrozen = 1 WHERE ID in 
+	(select UserID from deleted)
+
+delete from Customers where UserID=1
+select * from Customers
+(WID int identity primary key,
+UserID int references Customers(UserID),
+WDate date,
+WAmount int)
+
+insert into Customers values
+(1, 'Thao', '1995-01-01', 0, 1000),
+(2, 'Do', '1996-01-01', 0, 500)
+
+create trigger tag_NoDeletionOnCus ON Customers INSTEAD OF DELETE
+AS
+	update Customers set IsFrozen = 1 WHERE ID in 
+	(select UserID from deleted)
+
+delete from Customers where UserID=1
+select * from Customers
