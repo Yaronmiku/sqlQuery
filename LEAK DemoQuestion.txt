@@ -1,0 +1,125 @@
+Thầy cung cấp 1 vài đề query để tụi em tham khảo xem sẽ làm ntn.
+Đề query này của lớp cũ. Ko có đáp án. Cũng ko có ngữ cảnh. Xem thử hiểu sao thì hiểu
+1/ in ra danh sách các món ăn chay
+2/ in và sắp xếp các món ăn từ đắt về rẻ
+3/ đếm số đơn hàng trong tháng 3 năm 2021
+4/ in ra các khách hàng có full tên cuối là 'Ha'
+5/ người (or những người) già nhất công ty năm nay nhiêu tuổi (năm) ?
+6/ đếm số nhân viên theo mỗi vị trí trong cty (position)
+7/ cập nhật nhân viên số 1 thành nữ
+
+1/ Tìm, liệt kê khách hàng họ 'Huynh'
+2/ cập nhật khách hàng số 2 thành họ 'Do'
+3/ Tìm nhân viên (or những nhân viên) có ngày vào làm sớm nhất cty
+4/ đếm số đồ uống (beverages) trong FoodItems
+5/ tính số món đã gọi của mỗi mã đơn hàng
+6/ số đơn hàng trong tháng 1 năm 2022
+
+1/ Đếm số bình luận rỗng '' hoặc null
+2/ Liệt kê tất cả sản phẩm dòng Galaxy và Iphone
+3/ liệt kê và sắp xếp sản phẩm có giá từ 5 triệu theo thứ tự giá thấp đến cao.
+4/ đếm số đơn hàng mà mỗi nhân viên môi giới (bán hàng) bán được (kèm tên NV đó)
+5/ Liệt kê những đơn hàng (và tên khách mua) mua hàng vào sáng ngày cuối cùng của tháng 2, 2022
+6/ Top 3 Sản phẩm bán chạy nhất & tên của nó.
+
+1/ Đếm số cầu thủ ở mỗi quốc gia
+2/ Sân nào (or những sân nào) sức chứa lớn nhất.
+3/ Đếm Số clb bắt đầu bằng chữ B
+4/ Hợp đồng dài nhất là bao nhiêu năm ?
+5/ Clb Real đã đá bao nhiêu trận ?
+6/ Cập nhật tất cả thủ môn người Anh về họ 'Do'
+
+1/ Liệt kê ra những khách hàng có số điện thoại dài hơn 12 kí tự
+2/ Liệt kê ra những salespersons có email là gmail.com
+3/ liệt kê và sắp xếp sản phẩm bán giá giảm dần
+4/ đếm số đơn hàng mà mỗi nhân viên môi giới (bán hàng) được
+5/ Tìm những đơn hàng bán được nhiều hơn 2 loại sản phẩm
+6/ Cập nhật zipcode của khách hàng có ID > 10 về '' (rỗng)
+
+1/ Liệt kê những SV họ Lê là nam giới
+2/ Đếm số sinh viên có email bắt đầu bằng chữ B
+3/ Liệt kê 5 phòng (và thông tin) có giá từ cao xuống thấp.
+4/ sv id số 2 có tên gì và đã thuê những phòng loại gì, giá bao nhiêu ?
+5/ cập nhật staff số 1 gt nam thành gt nữ
+6/ Dịch vụ giặt ủi có bao nhiêu lược thuê ?
+
+1/ liệt kê nhân viên có quê ở Quảng Bình, làm kế toán
+2/ Liệt kê 2 giờ mà nhân viên HAY đến công ty vào buổi sáng.
+3/ Tính khoảng cách (bằng ngày) giữa ngày sớm nhất và muộn nhất trong bản Work_Schedule
+4/ sắp xếp bảng rate lương theo thứ tự giảm dần
+5/ Lương cao nhất được trả là vào thời gian nào, người nào (những người nào)
+6/ Mở rổng bảng Timekeeping để thấy lun cả tên nhân viên.
+
+1/ Tìm khách hàng có middle name là 'Thi'
+2/ Liệt kê và sắp xếp dược sĩ Nam, tên tăng dần theo Alphabet.
+3/ Thuốc (hoặc những loại thuốc) đắt tiền nhất có tên là gì ?
+5/ Hiện đơn hàng & tên người mua & tên loại thuốc
+6/ đếm số đơn hàng mà mỗi dược sĩ đã bán được
+4/ Mở rộng đơn hàng với tổng tiền (suy ra từ order detail & medicine)
+1/ Liệt kê những SV họ Le là nam giới
+2/ Đếm số sinh viên có email bắt đầu bằng chữ b
+3/ Liệt kê 5 phòng (và thông tin) có giá từ cao xuống thấp.
+4/ sv id số 2 có tên gì và đã thuê những phòng loại gì, giá bao nhiêu ?
+5/ liệt kê roomservice với khoảng thời gian sử dụng dịch vụ. 
+6/ Hóa đơn cao nhất là nhiêu tiền ?
+
+1/ Đếm số cầu thủ ở mỗi quốc gia.
+2/ sắp xếp liệt kê sân vận động có sức chứa tăng dần.
+3/ Liệt kê clb bắt đầu bằng chữ B
+4/ Hợp đồng dài nhất là bao nhiêu năm ?
+5/ Clb MU có sân bóng chính là tên gì ? độ dài địa chỉ sân này là bao nhiêu ?
+6/ Trận bóng id=15 ai là đội nhà tên gì, sân bóng tên gì ? 
+1/ sắp xếp room type theo thứ tự giảm dần về giá
+2/ đếm số khách hàng ở mỗi địa chỉ
+3/ khách hàng số 3 đã từng làm review mấy lần ?
+4/ liệt kê việc đặt phòng kèm với khoảng thời gian lưu trú này (tính theo ngày)
+5/ tính số review có độ dài comment > 4
+6/ cập nhật room có id = 7 lên tầng 7 
+
+1/ thêm 1 row vào Salary và liệt kê ra danh sách thứ tự giảm dần về salary
+2/ Tính giờ nhân viên st01 làm vào ngày 1 tháng 2, 2022.
+3/ Liệt kê bảng nhân viên kèm với vị trí (position) của họ trong cty 
+4/ Đếm những nhân viên có tên bắt đầu bằng chữ t,
+5/ Đếm số nhân viên ở mỗi giới (nam/nữ)
+6/ Liệt kê những Time_work vắng mặt vào những ngày thường, và ngày nào họ vắng
+
+1/ Bao nhiêu loại phòng khác nhau ?
+2/ Liệt kê nhân viên sinh năm từ 1980
+3/ Đếm số khách hàng theo mỗi Họ của họ. 
+4/ Liệt kê booking kèm với tên của người book phòng. (ko cần nhân viên)
+5/ Liệt kê và sắp xếp khách hàng theo độ tuổi giảm dần
+6/ Đổi tên cụ Dumbledore thành Grindelwald trong bảng khách hang
+
+1/ Đếm sv họ Nguyễn
+2/ Tìm, liệt kê phòng trống, cho nam, sức chứa trên 5 người
+3/ SV số 2 từng order phòng bao nhiêu lần ?
+4/ Tính tổng tiền dịch vụ trên mỗi phòng
+5/ Show Room Order có kèm theo khoảng thời gian thuê (tính bằng ngày)
+6/ Update sv Lê Minh Đức thành 19 tuổi.
+
+1/ Liệt kê staff có đầu sdt 09
+2/ Sắp xếp staff tăng dần theo thứ tự alphabet, 
+3/ Đếm số khách (guest) từ mỗi quốc gia
+4/ sắp xếp room type giá tăng dần
+5/ Liệt kê ra sự kiện booking có kèm theo tên khách hàng.
+6/ Tìm và liệt kê nhân viên có tên Adam, giới tính Nam.
+
+1/ Tim NV có tên lót là 'Van'
+2/ Đếm số nhân viên có ngày sinh trước năm 2000
+3/ Sắp xếp món ăn là Mỳ theo thứ tự tăng dần về giá
+4/ Mở rộng bảng Order để xem được khách hàng tên gì mua gì (tên món)
+5/ Tính tổng tiền (doanh thu) cửa hàng/nhà hàng này thu được.
+6/ Bill id 21 gọi thêm một món Mỳ Ramen thì insert ntn ?
+
+1/ Tìm sv có sdt bắt đầu 03 VÀ là nữ
+2/ Update (những) người dùng yahoo mail thành email mới là '' (rỗng)
+3/ Tìm nhân sự sinh sau năm 1990
+4/ Liệt kê bảng contract kèm theo thời hạn (khoảng tg là bằng ngày) của những hợp đồng này.
+5/ Đếm số lần được phân công quản lý của mỗi staff (ko cần tên)
+6/ Đếm số staff là quản lý (manager)
+1/ Tìm staff thuộc chi nhánh có ID=3,5,7
+2/ hiển thị & sắp xếp staff theo độ tuổi giảm dần
+3/ Tìm những chi nhánh có tên bắt đầu bằng chữ H
+4/ Đếm số thuốc theo từng nhóm loại thuốc
+5/ Tìm những đơn hàng bán trong năm 2019
+6/ Số lượng nhân viên ở chi nhánh đông nhất là bao nhiêu ?
