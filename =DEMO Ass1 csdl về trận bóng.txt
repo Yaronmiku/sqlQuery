@@ -1,0 +1,39 @@
+//Have 4 Boards// 
+ 
+Club: Câu lạc bộ
+-Club ID: Số ID câu lạc bộ
+-Club Name: Tên câu lạc bộ
+-Sponsor Name: Tên nhà tài trợ 
+ 
+** Matches: Trận đấu
+-Match ID: Số ID Trận đấu
+-HomeCLub ID: Số ID câu lạc bộ Chủ Nhà
+-AwayClub ID: Số ID câu lạc bộ Khách
+ 
+Stadium: Sân vận động
+-Stadium ID: Số ID của sân vận động 
+-Stadium name: Tên của sân vận động
+-Location: Vị trí của sân vận động
+ 
+Players: Người chơi 
+-PlayerID: Số ID người chơi 
+-PlayerName: Tên người chơi 
+-Dob (Date of Birth): Ngày sinh của Cầu Thủ 
+-YellowCards, redcards: Thẻ phạt xanh, đỏ 
+-Club ID 
+
+One to Many Example: 
+1 câu lạc bộ (có nhiều Cầu Thủ), 1 Cầu Thủ 'chỉ có thể tham gia' 1 câu lạc bộ
+ 
+Club ID --> One to Many --> (HomeCLub)(AwayClub) 
+Club ID /From Clubs/--> One to Many --> Club ID /From Players/ 
+Stadium ID --> One to Many --> Stadium time 
+ 
+Diagram Database Objectives: 
+-1 câu lạc bộ nhiều Cầu Thủ (PLayers)
+-Trong 1 trận đấu (Matches) sẽ có 2 câu lạc bộ (Chủ Nhà và Khách)-HomeClub & AwayClub 
+// Câu lạc bộ có câu lạc bộ Chủ Nhà (HomeCLub), câu lạc bộ khách (AwayClub) //
+-1 trận đấu (Matches) diễn ra trên 1 sân vận động (Stadiums) 
+-1 bảng xếp hạng (Ranking) với nhiều câu lạc bộ (Clubs) 
+-Position là vị trí mà một cầu thủ giữ khi chơi, như thủ môn hoặc tiền đạo (Hậu vệ, Tiền vệ, Tiền đạo)
+
